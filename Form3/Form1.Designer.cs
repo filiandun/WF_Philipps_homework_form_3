@@ -30,6 +30,9 @@
         {
             this.groupBoxTelephone = new System.Windows.Forms.GroupBox();
             this.buttonStart = new System.Windows.Forms.Button();
+            this.buttonNextTextBox = new System.Windows.Forms.Button();
+            this.buttonNewNum = new System.Windows.Forms.Button();
+            this.buttonClearAllTexBox = new System.Windows.Forms.Button();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -40,8 +43,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.buttonSet = new System.Windows.Forms.Button();
-            this.buttonRestart = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxCountry = new System.Windows.Forms.GroupBox();
             this.buttonPrevious = new System.Windows.Forms.Button();
@@ -54,7 +55,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button34 = new System.Windows.Forms.Button();
+            this.buttonComplete = new System.Windows.Forms.Button();
             this.textBoxFIO = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -105,6 +106,9 @@
             // groupBoxTelephone
             // 
             this.groupBoxTelephone.Controls.Add(this.buttonStart);
+            this.groupBoxTelephone.Controls.Add(this.buttonNextTextBox);
+            this.groupBoxTelephone.Controls.Add(this.buttonNewNum);
+            this.groupBoxTelephone.Controls.Add(this.buttonClearAllTexBox);
             this.groupBoxTelephone.Controls.Add(this.textBox9);
             this.groupBoxTelephone.Controls.Add(this.textBox8);
             this.groupBoxTelephone.Controls.Add(this.textBox7);
@@ -115,8 +119,6 @@
             this.groupBoxTelephone.Controls.Add(this.textBox2);
             this.groupBoxTelephone.Controls.Add(this.textBox1);
             this.groupBoxTelephone.Controls.Add(this.textBox10);
-            this.groupBoxTelephone.Controls.Add(this.buttonSet);
-            this.groupBoxTelephone.Controls.Add(this.buttonRestart);
             this.groupBoxTelephone.Controls.Add(this.label1);
             this.groupBoxTelephone.Location = new System.Drawing.Point(13, 189);
             this.groupBoxTelephone.Name = "groupBoxTelephone";
@@ -127,13 +129,43 @@
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(221, 61);
+            this.buttonStart.Location = new System.Drawing.Point(437, 61);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(75, 23);
-            this.buttonStart.TabIndex = 13;
+            this.buttonStart.Size = new System.Drawing.Size(74, 23);
+            this.buttonStart.TabIndex = 16;
             this.buttonStart.Text = "Старт";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            // 
+            // buttonNextTextBox
+            // 
+            this.buttonNextTextBox.Location = new System.Drawing.Point(273, 61);
+            this.buttonNextTextBox.Name = "buttonNextTextBox";
+            this.buttonNextTextBox.Size = new System.Drawing.Size(133, 23);
+            this.buttonNextTextBox.TabIndex = 15;
+            this.buttonNextTextBox.Text = "Следующее поле";
+            this.buttonNextTextBox.UseVisualStyleBackColor = true;
+            this.buttonNextTextBox.Click += new System.EventHandler(this.buttonNextTextBox_Click);
+            // 
+            // buttonNewNum
+            // 
+            this.buttonNewNum.Location = new System.Drawing.Point(136, 61);
+            this.buttonNewNum.Name = "buttonNewNum";
+            this.buttonNewNum.Size = new System.Drawing.Size(104, 23);
+            this.buttonNewNum.TabIndex = 14;
+            this.buttonNewNum.Text = "Другое число";
+            this.buttonNewNum.UseVisualStyleBackColor = true;
+            this.buttonNewNum.Click += new System.EventHandler(this.buttonNewNum_Click);
+            // 
+            // buttonClearAllTexBox
+            // 
+            this.buttonClearAllTexBox.Location = new System.Drawing.Point(37, 61);
+            this.buttonClearAllTexBox.Name = "buttonClearAllTexBox";
+            this.buttonClearAllTexBox.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearAllTexBox.TabIndex = 13;
+            this.buttonClearAllTexBox.Text = "Очистить";
+            this.buttonClearAllTexBox.UseVisualStyleBackColor = true;
+            this.buttonClearAllTexBox.Click += new System.EventHandler(this.buttonClearAllTexBox_Click);
             // 
             // textBox9
             // 
@@ -215,26 +247,6 @@
             this.textBox10.Size = new System.Drawing.Size(33, 20);
             this.textBox10.TabIndex = 2;
             // 
-            // buttonSet
-            // 
-            this.buttonSet.Location = new System.Drawing.Point(334, 61);
-            this.buttonSet.Name = "buttonSet";
-            this.buttonSet.Size = new System.Drawing.Size(75, 23);
-            this.buttonSet.TabIndex = 1;
-            this.buttonSet.Text = "Задать";
-            this.buttonSet.UseVisualStyleBackColor = true;
-            this.buttonSet.Click += new System.EventHandler(this.buttonSet_Click);
-            // 
-            // buttonRestart
-            // 
-            this.buttonRestart.Location = new System.Drawing.Point(114, 61);
-            this.buttonRestart.Name = "buttonRestart";
-            this.buttonRestart.Size = new System.Drawing.Size(75, 23);
-            this.buttonRestart.TabIndex = 0;
-            this.buttonRestart.Text = "Заново";
-            this.buttonRestart.UseVisualStyleBackColor = true;
-            this.buttonRestart.Click += new System.EventHandler(this.buttonRestart_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -264,13 +276,13 @@
             this.buttonPrevious.Name = "buttonPrevious";
             this.buttonPrevious.Size = new System.Drawing.Size(84, 123);
             this.buttonPrevious.TabIndex = 2;
-            this.buttonPrevious.Text = "еищудыдерП";
+            this.buttonPrevious.Text = "еещудыдерП";
             this.buttonPrevious.UseVisualStyleBackColor = true;
             this.buttonPrevious.Click += new System.EventHandler(this.buttonPrevious_Click);
             // 
             // buttonNext
             // 
-            this.buttonNext.Location = new System.Drawing.Point(361, 19);
+            this.buttonNext.Location = new System.Drawing.Point(357, 19);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(84, 123);
             this.buttonNext.TabIndex = 1;
@@ -321,10 +333,11 @@
             // 
             this.trackBarGender.LargeChange = 1;
             this.trackBarGender.Location = new System.Drawing.Point(7, 29);
-            this.trackBarGender.Maximum = 1;
+            this.trackBarGender.Maximum = 2;
             this.trackBarGender.Name = "trackBarGender";
             this.trackBarGender.Size = new System.Drawing.Size(522, 45);
             this.trackBarGender.TabIndex = 0;
+            this.trackBarGender.Value = 1;
             // 
             // statusStrip1
             // 
@@ -340,7 +353,7 @@
             // toolStripProgressBar1
             // 
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(250, 16);
             // 
             // toolStripStatusLabel1
             // 
@@ -348,14 +361,15 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // button34
+            // buttonComplete
             // 
-            this.button34.Location = new System.Drawing.Point(12, 562);
-            this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(547, 24);
-            this.button34.TabIndex = 5;
-            this.button34.Text = "Отправить";
-            this.button34.UseVisualStyleBackColor = true;
+            this.buttonComplete.Location = new System.Drawing.Point(12, 562);
+            this.buttonComplete.Name = "buttonComplete";
+            this.buttonComplete.Size = new System.Drawing.Size(547, 24);
+            this.buttonComplete.TabIndex = 5;
+            this.buttonComplete.Text = "Отправить";
+            this.buttonComplete.UseVisualStyleBackColor = true;
+            this.buttonComplete.Click += new System.EventHandler(this.buttonComplete_Click);
             // 
             // textBoxFIO
             // 
@@ -373,7 +387,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Й";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button_Click);
             // 
             // button2
             // 
@@ -383,7 +397,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Ц";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.button_Click);
             // 
             // button3
             // 
@@ -393,7 +407,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "У";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.button_Click);
             // 
             // button4
             // 
@@ -403,7 +417,7 @@
             this.button4.TabIndex = 4;
             this.button4.Text = "К";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.button_Click);
             // 
             // button5
             // 
@@ -413,7 +427,7 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "Е";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.button_Click);
             // 
             // button6
             // 
@@ -423,7 +437,7 @@
             this.button6.TabIndex = 6;
             this.button6.Text = "Н";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.button_Click);
             // 
             // button7
             // 
@@ -433,7 +447,7 @@
             this.button7.TabIndex = 7;
             this.button7.Text = "Г";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.button7.Click += new System.EventHandler(this.button_Click);
             // 
             // button8
             // 
@@ -443,7 +457,7 @@
             this.button8.TabIndex = 8;
             this.button8.Text = "Ш";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.button8.Click += new System.EventHandler(this.button_Click);
             // 
             // button9
             // 
@@ -453,7 +467,7 @@
             this.button9.TabIndex = 9;
             this.button9.Text = "Щ";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.button9.Click += new System.EventHandler(this.button_Click);
             // 
             // button10
             // 
@@ -463,7 +477,7 @@
             this.button10.TabIndex = 10;
             this.button10.Text = "З";
             this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.button10.Click += new System.EventHandler(this.button_Click);
             // 
             // button11
             // 
@@ -473,7 +487,7 @@
             this.button11.TabIndex = 11;
             this.button11.Text = "Х";
             this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.button11.Click += new System.EventHandler(this.button_Click);
             // 
             // button12
             // 
@@ -483,7 +497,7 @@
             this.button12.TabIndex = 12;
             this.button12.Text = "Ъ";
             this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.button12.Click += new System.EventHandler(this.button_Click);
             // 
             // button13
             // 
@@ -493,7 +507,7 @@
             this.button13.TabIndex = 13;
             this.button13.Text = "Ф";
             this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
+            this.button13.Click += new System.EventHandler(this.button_Click);
             // 
             // button14
             // 
@@ -503,7 +517,7 @@
             this.button14.TabIndex = 14;
             this.button14.Text = "Ы";
             this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
+            this.button14.Click += new System.EventHandler(this.button_Click);
             // 
             // button15
             // 
@@ -513,7 +527,7 @@
             this.button15.TabIndex = 15;
             this.button15.Text = "В";
             this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
+            this.button15.Click += new System.EventHandler(this.button_Click);
             // 
             // button16
             // 
@@ -523,7 +537,7 @@
             this.button16.TabIndex = 16;
             this.button16.Text = "А";
             this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
+            this.button16.Click += new System.EventHandler(this.button_Click);
             // 
             // button17
             // 
@@ -533,7 +547,7 @@
             this.button17.TabIndex = 17;
             this.button17.Text = "П";
             this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
+            this.button17.Click += new System.EventHandler(this.button_Click);
             // 
             // button18
             // 
@@ -543,7 +557,7 @@
             this.button18.TabIndex = 18;
             this.button18.Text = "Р";
             this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
+            this.button18.Click += new System.EventHandler(this.button_Click);
             // 
             // button19
             // 
@@ -553,7 +567,7 @@
             this.button19.TabIndex = 19;
             this.button19.Text = "О";
             this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.button19_Click);
+            this.button19.Click += new System.EventHandler(this.button_Click);
             // 
             // button20
             // 
@@ -563,7 +577,7 @@
             this.button20.TabIndex = 20;
             this.button20.Text = "Л";
             this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.button20_Click);
+            this.button20.Click += new System.EventHandler(this.button_Click);
             // 
             // button21
             // 
@@ -573,7 +587,7 @@
             this.button21.TabIndex = 21;
             this.button21.Text = "Д";
             this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.button21_Click);
+            this.button21.Click += new System.EventHandler(this.button_Click);
             // 
             // button22
             // 
@@ -583,7 +597,7 @@
             this.button22.TabIndex = 22;
             this.button22.Text = "Ж";
             this.button22.UseVisualStyleBackColor = true;
-            this.button22.Click += new System.EventHandler(this.button22_Click);
+            this.button22.Click += new System.EventHandler(this.button_Click);
             // 
             // button23
             // 
@@ -593,7 +607,7 @@
             this.button23.TabIndex = 23;
             this.button23.Text = "Э";
             this.button23.UseVisualStyleBackColor = true;
-            this.button23.Click += new System.EventHandler(this.button23_Click);
+            this.button23.Click += new System.EventHandler(this.button_Click);
             // 
             // button24
             // 
@@ -603,7 +617,7 @@
             this.button24.TabIndex = 24;
             this.button24.Text = "Я";
             this.button24.UseVisualStyleBackColor = true;
-            this.button24.Click += new System.EventHandler(this.button24_Click);
+            this.button24.Click += new System.EventHandler(this.button_Click);
             // 
             // button25
             // 
@@ -613,7 +627,7 @@
             this.button25.TabIndex = 25;
             this.button25.Text = "Ч";
             this.button25.UseVisualStyleBackColor = true;
-            this.button25.Click += new System.EventHandler(this.button25_Click);
+            this.button25.Click += new System.EventHandler(this.button_Click);
             // 
             // button26
             // 
@@ -623,7 +637,7 @@
             this.button26.TabIndex = 26;
             this.button26.Text = "С";
             this.button26.UseVisualStyleBackColor = true;
-            this.button26.Click += new System.EventHandler(this.button26_Click);
+            this.button26.Click += new System.EventHandler(this.button_Click);
             // 
             // button27
             // 
@@ -633,7 +647,7 @@
             this.button27.TabIndex = 27;
             this.button27.Text = "М";
             this.button27.UseVisualStyleBackColor = true;
-            this.button27.Click += new System.EventHandler(this.button27_Click);
+            this.button27.Click += new System.EventHandler(this.button_Click);
             // 
             // button28
             // 
@@ -643,7 +657,7 @@
             this.button28.TabIndex = 28;
             this.button28.Text = "И";
             this.button28.UseVisualStyleBackColor = true;
-            this.button28.Click += new System.EventHandler(this.button28_Click);
+            this.button28.Click += new System.EventHandler(this.button_Click);
             // 
             // button29
             // 
@@ -653,7 +667,7 @@
             this.button29.TabIndex = 29;
             this.button29.Text = "Т";
             this.button29.UseVisualStyleBackColor = true;
-            this.button29.Click += new System.EventHandler(this.button29_Click);
+            this.button29.Click += new System.EventHandler(this.button_Click);
             // 
             // buttonLanguage
             // 
@@ -673,7 +687,7 @@
             this.button30.TabIndex = 30;
             this.button30.Text = "Ь";
             this.button30.UseVisualStyleBackColor = true;
-            this.button30.Click += new System.EventHandler(this.button30_Click);
+            this.button30.Click += new System.EventHandler(this.button_Click);
             // 
             // button31
             // 
@@ -683,7 +697,7 @@
             this.button31.TabIndex = 31;
             this.button31.Text = "Б";
             this.button31.UseVisualStyleBackColor = true;
-            this.button31.Click += new System.EventHandler(this.button31_Click);
+            this.button31.Click += new System.EventHandler(this.button_Click);
             // 
             // button32
             // 
@@ -693,7 +707,7 @@
             this.button32.TabIndex = 32;
             this.button32.Text = "Ю";
             this.button32.UseVisualStyleBackColor = true;
-            this.button32.Click += new System.EventHandler(this.button32_Click);
+            this.button32.Click += new System.EventHandler(this.button_Click);
             // 
             // buttonSpace
             // 
@@ -777,11 +791,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 627);
             this.Controls.Add(this.groupBoxFIO);
-            this.Controls.Add(this.button34);
+            this.Controls.Add(this.buttonComplete);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBoxGender);
             this.Controls.Add(this.groupBoxCountry);
             this.Controls.Add(this.groupBoxTelephone);
+            this.MaximumSize = new System.Drawing.Size(588, 666);
+            this.MinimumSize = new System.Drawing.Size(588, 666);
             this.Name = "Form1";
             this.Text = "Анкета";
             this.groupBoxTelephone.ResumeLayout(false);
@@ -803,8 +819,6 @@
         #endregion
         private System.Windows.Forms.GroupBox groupBoxTelephone;
         private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Button buttonSet;
-        private System.Windows.Forms.Button buttonRestart;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox7;
@@ -826,8 +840,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.Button button34;
-        private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.Button buttonComplete;
         private System.Windows.Forms.TextBox textBoxFIO;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -866,6 +879,10 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.GroupBox groupBoxFIO;
         private System.Windows.Forms.Button buttonCaps;
+        private System.Windows.Forms.Button buttonClearAllTexBox;
+        private System.Windows.Forms.Button buttonNextTextBox;
+        private System.Windows.Forms.Button buttonNewNum;
+        private System.Windows.Forms.Button buttonStart;
     }
 }
 

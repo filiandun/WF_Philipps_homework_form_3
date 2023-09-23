@@ -81,19 +81,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tramp.gif" />
+    <None Include="Resources\usa.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\putin walking.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\win logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\win logo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\win logo1.jpg" />
+    <None Include="Resources\russia.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

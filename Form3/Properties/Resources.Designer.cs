@@ -63,9 +63,9 @@ namespace Form3.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap putin_walking {
+        internal static System.Drawing.Bitmap russia {
             get {
-                object obj = ResourceManager.GetObject("putin walking", resourceCulture);
+                object obj = ResourceManager.GetObject("russia", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Form3.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tramp {
+        internal static System.Drawing.Bitmap usa {
             get {
-                object obj = ResourceManager.GetObject("tramp", resourceCulture);
+                object obj = ResourceManager.GetObject("usa", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
