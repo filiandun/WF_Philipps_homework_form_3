@@ -47,7 +47,7 @@
             this.groupBoxCountry = new System.Windows.Forms.GroupBox();
             this.buttonPrevious = new System.Windows.Forms.Button();
             this.buttonNext = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCountry = new System.Windows.Forms.PictureBox();
             this.groupBoxGender = new System.Windows.Forms.GroupBox();
             this.labelFemale = new System.Windows.Forms.Label();
             this.labelMale = new System.Windows.Forms.Label();
@@ -94,13 +94,24 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.groupBoxFIO = new System.Windows.Forms.GroupBox();
             this.buttonCaps = new System.Windows.Forms.Button();
+            this.groupBoxBirthday = new System.Windows.Forms.GroupBox();
+            this.labelYear = new System.Windows.Forms.Label();
+            this.labelMonth = new System.Windows.Forms.Label();
+            this.labelDay = new System.Windows.Forms.Label();
+            this.numericUpDownBirthYear = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownBirthMonth = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownBirthDay = new System.Windows.Forms.NumericUpDown();
             this.groupBoxTelephone.SuspendLayout();
             this.groupBoxCountry.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCountry)).BeginInit();
             this.groupBoxGender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGender)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBoxFIO.SuspendLayout();
+            this.groupBoxBirthday.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthYear)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthMonth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthDay)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxTelephone
@@ -120,10 +131,10 @@
             this.groupBoxTelephone.Controls.Add(this.textBox1);
             this.groupBoxTelephone.Controls.Add(this.textBox10);
             this.groupBoxTelephone.Controls.Add(this.label1);
-            this.groupBoxTelephone.Location = new System.Drawing.Point(13, 189);
+            this.groupBoxTelephone.Location = new System.Drawing.Point(13, 277);
             this.groupBoxTelephone.Name = "groupBoxTelephone";
             this.groupBoxTelephone.Size = new System.Drawing.Size(547, 99);
-            this.groupBoxTelephone.TabIndex = 1;
+            this.groupBoxTelephone.TabIndex = 2;
             this.groupBoxTelephone.TabStop = false;
             this.groupBoxTelephone.Text = "Номер телефона";
             // 
@@ -132,7 +143,7 @@
             this.buttonStart.Location = new System.Drawing.Point(437, 61);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(74, 23);
-            this.buttonStart.TabIndex = 16;
+            this.buttonStart.TabIndex = 14;
             this.buttonStart.Text = "Старт";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
@@ -142,7 +153,7 @@
             this.buttonNextTextBox.Location = new System.Drawing.Point(273, 61);
             this.buttonNextTextBox.Name = "buttonNextTextBox";
             this.buttonNextTextBox.Size = new System.Drawing.Size(133, 23);
-            this.buttonNextTextBox.TabIndex = 15;
+            this.buttonNextTextBox.TabIndex = 13;
             this.buttonNextTextBox.Text = "Следующее поле";
             this.buttonNextTextBox.UseVisualStyleBackColor = true;
             this.buttonNextTextBox.Click += new System.EventHandler(this.buttonNextTextBox_Click);
@@ -152,7 +163,7 @@
             this.buttonNewNum.Location = new System.Drawing.Point(136, 61);
             this.buttonNewNum.Name = "buttonNewNum";
             this.buttonNewNum.Size = new System.Drawing.Size(104, 23);
-            this.buttonNewNum.TabIndex = 14;
+            this.buttonNewNum.TabIndex = 12;
             this.buttonNewNum.Text = "Другое число";
             this.buttonNewNum.UseVisualStyleBackColor = true;
             this.buttonNewNum.Click += new System.EventHandler(this.buttonNewNum_Click);
@@ -162,7 +173,7 @@
             this.buttonClearAllTexBox.Location = new System.Drawing.Point(37, 61);
             this.buttonClearAllTexBox.Name = "buttonClearAllTexBox";
             this.buttonClearAllTexBox.Size = new System.Drawing.Size(75, 23);
-            this.buttonClearAllTexBox.TabIndex = 13;
+            this.buttonClearAllTexBox.TabIndex = 11;
             this.buttonClearAllTexBox.Text = "Очистить";
             this.buttonClearAllTexBox.UseVisualStyleBackColor = true;
             this.buttonClearAllTexBox.Click += new System.EventHandler(this.buttonClearAllTexBox_Click);
@@ -173,7 +184,8 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(33, 20);
-            this.textBox9.TabIndex = 11;
+            this.textBox9.TabIndex = 9;
+            this.textBox9.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // textBox8
             // 
@@ -181,7 +193,8 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(33, 20);
-            this.textBox8.TabIndex = 10;
+            this.textBox8.TabIndex = 8;
+            this.textBox8.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // textBox7
             // 
@@ -189,7 +202,8 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(33, 20);
-            this.textBox7.TabIndex = 9;
+            this.textBox7.TabIndex = 7;
+            this.textBox7.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // textBox6
             // 
@@ -197,7 +211,8 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(33, 20);
-            this.textBox6.TabIndex = 8;
+            this.textBox6.TabIndex = 6;
+            this.textBox6.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // textBox5
             // 
@@ -205,7 +220,8 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(33, 20);
-            this.textBox5.TabIndex = 7;
+            this.textBox5.TabIndex = 5;
+            this.textBox5.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // textBox4
             // 
@@ -213,7 +229,8 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(33, 20);
-            this.textBox4.TabIndex = 6;
+            this.textBox4.TabIndex = 4;
+            this.textBox4.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // textBox3
             // 
@@ -221,7 +238,8 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(33, 20);
-            this.textBox3.TabIndex = 5;
+            this.textBox3.TabIndex = 3;
+            this.textBox3.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // textBox2
             // 
@@ -229,7 +247,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(33, 20);
-            this.textBox2.TabIndex = 4;
+            this.textBox2.TabIndex = 2;
+            this.textBox2.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // textBox1
             // 
@@ -237,7 +256,8 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(33, 20);
-            this.textBox1.TabIndex = 3;
+            this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // textBox10
             // 
@@ -245,7 +265,8 @@
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(33, 20);
-            this.textBox10.TabIndex = 2;
+            this.textBox10.TabIndex = 10;
+            this.textBox10.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // label1
             // 
@@ -262,11 +283,11 @@
             // 
             this.groupBoxCountry.Controls.Add(this.buttonPrevious);
             this.groupBoxCountry.Controls.Add(this.buttonNext);
-            this.groupBoxCountry.Controls.Add(this.pictureBox1);
-            this.groupBoxCountry.Location = new System.Drawing.Point(13, 295);
+            this.groupBoxCountry.Controls.Add(this.pictureBoxCountry);
+            this.groupBoxCountry.Location = new System.Drawing.Point(13, 382);
             this.groupBoxCountry.Name = "groupBoxCountry";
             this.groupBoxCountry.Size = new System.Drawing.Size(547, 149);
-            this.groupBoxCountry.TabIndex = 2;
+            this.groupBoxCountry.TabIndex = 3;
             this.groupBoxCountry.TabStop = false;
             this.groupBoxCountry.Text = "Страна";
             // 
@@ -275,7 +296,7 @@
             this.buttonPrevious.Location = new System.Drawing.Point(107, 19);
             this.buttonPrevious.Name = "buttonPrevious";
             this.buttonPrevious.Size = new System.Drawing.Size(84, 123);
-            this.buttonPrevious.TabIndex = 2;
+            this.buttonPrevious.TabIndex = 1;
             this.buttonPrevious.Text = "еещудыдерП";
             this.buttonPrevious.UseVisualStyleBackColor = true;
             this.buttonPrevious.Click += new System.EventHandler(this.buttonPrevious_Click);
@@ -285,29 +306,29 @@
             this.buttonNext.Location = new System.Drawing.Point(357, 19);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(84, 123);
-            this.buttonNext.TabIndex = 1;
+            this.buttonNext.TabIndex = 2;
             this.buttonNext.Text = "Следующее";
             this.buttonNext.UseVisualStyleBackColor = true;
             this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
-            // pictureBox1
+            // pictureBoxCountry
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(221, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(102, 123);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxCountry.Location = new System.Drawing.Point(221, 19);
+            this.pictureBoxCountry.Name = "pictureBoxCountry";
+            this.pictureBoxCountry.Size = new System.Drawing.Size(102, 123);
+            this.pictureBoxCountry.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxCountry.TabIndex = 0;
+            this.pictureBoxCountry.TabStop = false;
             // 
             // groupBoxGender
             // 
             this.groupBoxGender.Controls.Add(this.labelFemale);
             this.groupBoxGender.Controls.Add(this.labelMale);
             this.groupBoxGender.Controls.Add(this.trackBarGender);
-            this.groupBoxGender.Location = new System.Drawing.Point(13, 451);
+            this.groupBoxGender.Location = new System.Drawing.Point(13, 548);
             this.groupBoxGender.Name = "groupBoxGender";
             this.groupBoxGender.Size = new System.Drawing.Size(547, 94);
-            this.groupBoxGender.TabIndex = 3;
+            this.groupBoxGender.TabIndex = 4;
             this.groupBoxGender.TabStop = false;
             this.groupBoxGender.Text = "Пол";
             // 
@@ -336,15 +357,16 @@
             this.trackBarGender.Maximum = 2;
             this.trackBarGender.Name = "trackBarGender";
             this.trackBarGender.Size = new System.Drawing.Size(522, 45);
-            this.trackBarGender.TabIndex = 0;
+            this.trackBarGender.TabIndex = 1;
             this.trackBarGender.Value = 1;
+            this.trackBarGender.ValueChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1,
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 605);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 702);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(572, 22);
             this.statusStrip1.TabIndex = 4;
@@ -363,7 +385,7 @@
             // 
             // buttonComplete
             // 
-            this.buttonComplete.Location = new System.Drawing.Point(12, 562);
+            this.buttonComplete.Location = new System.Drawing.Point(13, 664);
             this.buttonComplete.Name = "buttonComplete";
             this.buttonComplete.Size = new System.Drawing.Size(547, 24);
             this.buttonComplete.TabIndex = 5;
@@ -378,6 +400,7 @@
             this.textBoxFIO.ReadOnly = true;
             this.textBoxFIO.Size = new System.Drawing.Size(524, 20);
             this.textBoxFIO.TabIndex = 0;
+            this.textBoxFIO.TextChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // button1
             // 
@@ -714,7 +737,7 @@
             this.buttonSpace.Location = new System.Drawing.Point(65, 132);
             this.buttonSpace.Name = "buttonSpace";
             this.buttonSpace.Size = new System.Drawing.Size(344, 23);
-            this.buttonSpace.TabIndex = 35;
+            this.buttonSpace.TabIndex = 34;
             this.buttonSpace.Text = "Пробел";
             this.buttonSpace.UseVisualStyleBackColor = true;
             this.buttonSpace.Click += new System.EventHandler(this.buttonSpace_Click);
@@ -724,7 +747,7 @@
             this.buttonDelete.Location = new System.Drawing.Point(414, 132);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(63, 23);
-            this.buttonDelete.TabIndex = 36;
+            this.buttonDelete.TabIndex = 35;
             this.buttonDelete.Text = "Стереть";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
@@ -771,7 +794,7 @@
             this.groupBoxFIO.Location = new System.Drawing.Point(13, 13);
             this.groupBoxFIO.Name = "groupBoxFIO";
             this.groupBoxFIO.Size = new System.Drawing.Size(547, 170);
-            this.groupBoxFIO.TabIndex = 36;
+            this.groupBoxFIO.TabIndex = 0;
             this.groupBoxFIO.TabStop = false;
             this.groupBoxFIO.Text = "ФИО";
             // 
@@ -780,30 +803,143 @@
             this.buttonCaps.Location = new System.Drawing.Point(481, 132);
             this.buttonCaps.Name = "buttonCaps";
             this.buttonCaps.Size = new System.Drawing.Size(52, 23);
-            this.buttonCaps.TabIndex = 37;
+            this.buttonCaps.TabIndex = 36;
             this.buttonCaps.Text = "CAPS";
             this.buttonCaps.UseVisualStyleBackColor = true;
             this.buttonCaps.Click += new System.EventHandler(this.buttonCaps_Click);
+            // 
+            // groupBoxBirthday
+            // 
+            this.groupBoxBirthday.Controls.Add(this.labelYear);
+            this.groupBoxBirthday.Controls.Add(this.labelMonth);
+            this.groupBoxBirthday.Controls.Add(this.labelDay);
+            this.groupBoxBirthday.Controls.Add(this.numericUpDownBirthYear);
+            this.groupBoxBirthday.Controls.Add(this.numericUpDownBirthMonth);
+            this.groupBoxBirthday.Controls.Add(this.numericUpDownBirthDay);
+            this.groupBoxBirthday.Location = new System.Drawing.Point(13, 190);
+            this.groupBoxBirthday.Name = "groupBoxBirthday";
+            this.groupBoxBirthday.Size = new System.Drawing.Size(547, 81);
+            this.groupBoxBirthday.TabIndex = 1;
+            this.groupBoxBirthday.TabStop = false;
+            this.groupBoxBirthday.Text = "Дата рождения";
+            // 
+            // labelYear
+            // 
+            this.labelYear.AutoSize = true;
+            this.labelYear.Location = new System.Drawing.Point(324, 16);
+            this.labelYear.Name = "labelYear";
+            this.labelYear.Size = new System.Drawing.Size(25, 13);
+            this.labelYear.TabIndex = 6;
+            this.labelYear.Text = "Год";
+            // 
+            // labelMonth
+            // 
+            this.labelMonth.AutoSize = true;
+            this.labelMonth.Location = new System.Drawing.Point(218, 16);
+            this.labelMonth.Name = "labelMonth";
+            this.labelMonth.Size = new System.Drawing.Size(40, 13);
+            this.labelMonth.TabIndex = 5;
+            this.labelMonth.Text = "Месяц";
+            // 
+            // labelDay
+            // 
+            this.labelDay.AutoSize = true;
+            this.labelDay.Location = new System.Drawing.Point(140, 16);
+            this.labelDay.Name = "labelDay";
+            this.labelDay.Size = new System.Drawing.Size(34, 13);
+            this.labelDay.TabIndex = 4;
+            this.labelDay.Text = "День";
+            // 
+            // numericUpDownBirthYear
+            // 
+            this.numericUpDownBirthYear.Location = new System.Drawing.Point(290, 36);
+            this.numericUpDownBirthYear.Maximum = new decimal(new int[] {
+            2023,
+            0,
+            0,
+            0});
+            this.numericUpDownBirthYear.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownBirthYear.Name = "numericUpDownBirthYear";
+            this.numericUpDownBirthYear.ReadOnly = true;
+            this.numericUpDownBirthYear.Size = new System.Drawing.Size(105, 20);
+            this.numericUpDownBirthYear.TabIndex = 3;
+            this.numericUpDownBirthYear.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownBirthYear.ValueChanged += new System.EventHandler(this.numericUpDownBirthYear_ValueChanged);
+            // 
+            // numericUpDownBirthMonth
+            // 
+            this.numericUpDownBirthMonth.Location = new System.Drawing.Point(210, 36);
+            this.numericUpDownBirthMonth.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.numericUpDownBirthMonth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownBirthMonth.Name = "numericUpDownBirthMonth";
+            this.numericUpDownBirthMonth.ReadOnly = true;
+            this.numericUpDownBirthMonth.Size = new System.Drawing.Size(56, 20);
+            this.numericUpDownBirthMonth.TabIndex = 2;
+            this.numericUpDownBirthMonth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownBirthMonth.ValueChanged += new System.EventHandler(this.numericUpDownBirthMonth_ValueChanged);
+            // 
+            // numericUpDownBirthDay
+            // 
+            this.numericUpDownBirthDay.Location = new System.Drawing.Point(130, 36);
+            this.numericUpDownBirthDay.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.numericUpDownBirthDay.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownBirthDay.Name = "numericUpDownBirthDay";
+            this.numericUpDownBirthDay.ReadOnly = true;
+            this.numericUpDownBirthDay.Size = new System.Drawing.Size(56, 20);
+            this.numericUpDownBirthDay.TabIndex = 1;
+            this.numericUpDownBirthDay.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownBirthDay.ValueChanged += new System.EventHandler(this.updateProgressBar);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 627);
+            this.ClientSize = new System.Drawing.Size(572, 724);
+            this.Controls.Add(this.groupBoxBirthday);
             this.Controls.Add(this.groupBoxFIO);
             this.Controls.Add(this.buttonComplete);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBoxGender);
             this.Controls.Add(this.groupBoxCountry);
             this.Controls.Add(this.groupBoxTelephone);
-            this.MaximumSize = new System.Drawing.Size(588, 666);
-            this.MinimumSize = new System.Drawing.Size(588, 666);
             this.Name = "Form1";
             this.Text = "Анкета";
             this.groupBoxTelephone.ResumeLayout(false);
             this.groupBoxTelephone.PerformLayout();
             this.groupBoxCountry.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCountry)).EndInit();
             this.groupBoxGender.ResumeLayout(false);
             this.groupBoxGender.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGender)).EndInit();
@@ -811,6 +947,11 @@
             this.statusStrip1.PerformLayout();
             this.groupBoxFIO.ResumeLayout(false);
             this.groupBoxFIO.PerformLayout();
+            this.groupBoxBirthday.ResumeLayout(false);
+            this.groupBoxBirthday.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthYear)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthMonth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthDay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -832,7 +973,7 @@
         private System.Windows.Forms.GroupBox groupBoxCountry;
         private System.Windows.Forms.Button buttonPrevious;
         private System.Windows.Forms.Button buttonNext;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxCountry;
         private System.Windows.Forms.GroupBox groupBoxGender;
         private System.Windows.Forms.Label labelFemale;
         private System.Windows.Forms.Label labelMale;
@@ -883,6 +1024,13 @@
         private System.Windows.Forms.Button buttonNextTextBox;
         private System.Windows.Forms.Button buttonNewNum;
         private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.GroupBox groupBoxBirthday;
+        private System.Windows.Forms.NumericUpDown numericUpDownBirthYear;
+        private System.Windows.Forms.NumericUpDown numericUpDownBirthMonth;
+        private System.Windows.Forms.NumericUpDown numericUpDownBirthDay;
+        private System.Windows.Forms.Label labelYear;
+        private System.Windows.Forms.Label labelMonth;
+        private System.Windows.Forms.Label labelDay;
     }
 }
 
