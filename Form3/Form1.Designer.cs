@@ -52,9 +52,8 @@
             this.labelFemale = new System.Windows.Forms.Label();
             this.labelMale = new System.Windows.Forms.Label();
             this.trackBarGender = new System.Windows.Forms.TrackBar();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStripWithStatusLabel = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.buttonComplete = new System.Windows.Forms.Button();
             this.textBoxFIO = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -101,17 +100,20 @@
             this.numericUpDownBirthYear = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownBirthMonth = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownBirthDay = new System.Windows.Forms.NumericUpDown();
+            this.statusStripWithProgressBar = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.groupBoxTelephone.SuspendLayout();
             this.groupBoxCountry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCountry)).BeginInit();
             this.groupBoxGender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGender)).BeginInit();
-            this.statusStrip1.SuspendLayout();
+            this.statusStripWithStatusLabel.SuspendLayout();
             this.groupBoxFIO.SuspendLayout();
             this.groupBoxBirthday.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthMonth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthDay)).BeginInit();
+            this.statusStripWithProgressBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxTelephone
@@ -299,7 +301,7 @@
             this.buttonPrevious.TabIndex = 1;
             this.buttonPrevious.Text = "еещудыдерП";
             this.buttonPrevious.UseVisualStyleBackColor = true;
-            this.buttonPrevious.Click += new System.EventHandler(this.buttonPrevious_Click);
+            this.buttonPrevious.Click += new System.EventHandler(this.nextCountry);
             // 
             // buttonNext
             // 
@@ -309,7 +311,7 @@
             this.buttonNext.TabIndex = 2;
             this.buttonNext.Text = "Следующее";
             this.buttonNext.UseVisualStyleBackColor = true;
-            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
+            this.buttonNext.Click += new System.EventHandler(this.nextCountry);
             // 
             // pictureBoxCountry
             // 
@@ -361,35 +363,28 @@
             this.trackBarGender.Value = 1;
             this.trackBarGender.ValueChanged += new System.EventHandler(this.updateProgressBar);
             // 
-            // statusStrip1
+            // statusStripWithStatusLabel
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1,
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 702);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(572, 22);
-            this.statusStrip1.TabIndex = 4;
-            this.statusStrip1.Text = "statusStrip1";
+            this.statusStripWithStatusLabel.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStripWithStatusLabel.Location = new System.Drawing.Point(0, 744);
+            this.statusStripWithStatusLabel.Name = "statusStripWithStatusLabel";
+            this.statusStripWithStatusLabel.Size = new System.Drawing.Size(572, 22);
+            this.statusStripWithStatusLabel.TabIndex = 4;
+            this.statusStripWithStatusLabel.Text = "statusStrip1";
             // 
-            // toolStripProgressBar1
+            // toolStripStatusLabel
             // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(250, 16);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // buttonComplete
             // 
-            this.buttonComplete.Location = new System.Drawing.Point(13, 664);
+            this.buttonComplete.Location = new System.Drawing.Point(246, 676);
             this.buttonComplete.Name = "buttonComplete";
-            this.buttonComplete.Size = new System.Drawing.Size(547, 24);
+            this.buttonComplete.Size = new System.Drawing.Size(70, 24);
             this.buttonComplete.TabIndex = 5;
-            this.buttonComplete.Text = "Отправить";
+            this.buttonComplete.Text = "Готово";
             this.buttonComplete.UseVisualStyleBackColor = true;
             this.buttonComplete.Click += new System.EventHandler(this.buttonComplete_Click);
             // 
@@ -922,19 +917,37 @@
             0});
             this.numericUpDownBirthDay.ValueChanged += new System.EventHandler(this.updateProgressBar);
             // 
+            // statusStripWithProgressBar
+            // 
+            this.statusStripWithProgressBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar});
+            this.statusStripWithProgressBar.Location = new System.Drawing.Point(0, 722);
+            this.statusStripWithProgressBar.Name = "statusStripWithProgressBar";
+            this.statusStripWithProgressBar.Size = new System.Drawing.Size(572, 22);
+            this.statusStripWithProgressBar.TabIndex = 6;
+            this.statusStripWithProgressBar.Text = "statusStrip2";
+            // 
+            // toolStripProgressBar
+            // 
+            this.toolStripProgressBar.Margin = new System.Windows.Forms.Padding(13, 3, 1, 3);
+            this.toolStripProgressBar.Name = "toolStripProgressBar";
+            this.toolStripProgressBar.Size = new System.Drawing.Size(543, 16);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 724);
+            this.ClientSize = new System.Drawing.Size(572, 766);
+            this.Controls.Add(this.statusStripWithProgressBar);
             this.Controls.Add(this.groupBoxBirthday);
             this.Controls.Add(this.groupBoxFIO);
             this.Controls.Add(this.buttonComplete);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.statusStripWithStatusLabel);
             this.Controls.Add(this.groupBoxGender);
             this.Controls.Add(this.groupBoxCountry);
             this.Controls.Add(this.groupBoxTelephone);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Анкета";
             this.groupBoxTelephone.ResumeLayout(false);
             this.groupBoxTelephone.PerformLayout();
@@ -943,8 +956,8 @@
             this.groupBoxGender.ResumeLayout(false);
             this.groupBoxGender.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGender)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.statusStripWithStatusLabel.ResumeLayout(false);
+            this.statusStripWithStatusLabel.PerformLayout();
             this.groupBoxFIO.ResumeLayout(false);
             this.groupBoxFIO.PerformLayout();
             this.groupBoxBirthday.ResumeLayout(false);
@@ -952,6 +965,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthMonth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBirthDay)).EndInit();
+            this.statusStripWithProgressBar.ResumeLayout(false);
+            this.statusStripWithProgressBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -978,9 +993,8 @@
         private System.Windows.Forms.Label labelFemale;
         private System.Windows.Forms.Label labelMale;
         private System.Windows.Forms.TrackBar trackBarGender;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.StatusStrip statusStripWithStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.Button buttonComplete;
         private System.Windows.Forms.TextBox textBoxFIO;
         private System.Windows.Forms.Button button1;
@@ -1031,6 +1045,8 @@
         private System.Windows.Forms.Label labelYear;
         private System.Windows.Forms.Label labelMonth;
         private System.Windows.Forms.Label labelDay;
+        private System.Windows.Forms.StatusStrip statusStripWithProgressBar;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
     }
 }
 

@@ -1,36 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Form3
 {
     public partial class Form1 : Form
     {
+        private Random rand = new Random();
+
+        // ДЛЯ ПЕРВОГО БЛОКА
+        private string language = "RUS"; // текущая раскладка
+        private bool caps = true; // текущий CAPS
+
+        // ДЛЯ ТРЕТЬЕГО БЛОКА
+        TextBox textBox; // текущий textBox
+
+        // ДЛЯ ЧЕТВЁРТОГО БЛОКА
+        private string projectPath; // путь к папке с проектом
+        //private DirectoryInfo directoryInfo;
+
+
         public Form1()
         {
             InitializeComponent();
 
-            this.buttonClearAllTexBox.Enabled = false;
-            this.buttonNewNum.Enabled = false;
-            this.buttonNextTextBox.Enabled = false;
+            // ДЛЯ ПЕРВОГО БЛОКА
+            this.language = "RUS";
+            this.caps = true;
 
             this.groupBoxFIO.Controls.SetChildIndex(this.buttonLanguage, 0); // ВЕСЬ МОЗГ МНЕ ВЫНЕС GROUPBOX, ТАК КАК ВООБЩЕ НЕПОНЯТНО, 
             this.groupBoxFIO.Controls.SetChildIndex(this.buttonSpace, 1); // ПО КАКОЙ ЛОГИКЕ ОН ВНУТРИ СЕБЯ НУМИРУЕТ ЭЛЕМЕНТЫ,
             this.groupBoxFIO.Controls.SetChildIndex(this.buttonDelete, 2); // ПОЭТОМУ ПРИШЛОСЬ ЕМУ ПРИНУДИТЕЛЬНО СКАЗАТЬ, КАК МНЕ НАДО. 
-            this.groupBoxFIO.Controls.SetChildIndex(this.buttonCaps, 3); // P.S. уже на заключательном этапе, я начинаю догадываться, что это происходит по TabIndex.
+            this.groupBoxFIO.Controls.SetChildIndex(this.buttonCaps, 3); // P.S. уже на заключательном этапе, я начинаю догадываться, что это происходит либо по TabIndex, либо по расположения в Form1.Designer
+            
+            // ДЛЯ ТРЕТЬЕГО БЛОКА
+            this.buttonClearAllTexBox.Enabled = false;
+            this.buttonNewNum.Enabled = false;
+            this.buttonNextTextBox.Enabled = false;
 
-            this.toolStripProgressBar1.Minimum = 0;
-            this.toolStripProgressBar1.Maximum = 100;
+            // ДЛЯ ЧЁТВЕРТОГО БЛОКА
+            this.projectPath = AppDomain.CurrentDomain.BaseDirectory.Remove(AppDomain.CurrentDomain.BaseDirectory.Length - 10);
         }
 
 
@@ -38,88 +51,81 @@ namespace Form3
         {
             byte filledFields = 0;
 
-            // SENDER НУЖНО УБРАТЬ, С НИМ РАБОТАЕТ НЕКОРРЕКТНО
-            // нужно, чтобы подряд проверялось ВСЁ
-
-            if (sender == this.textBoxFIO) // проверка ФИО
+            // ПРОВЕРКА ФИО
+            if (!string.IsNullOrEmpty(this.textBoxFIO.Text)) 
             {
-                Regex regex = new Regex(@"^\D+\s\D+\s\D+$");
-                if (!string.IsNullOrEmpty(this.textBoxFIO.Text)) 
-                {
-                    if (regex.IsMatch(this.textBoxFIO.Text))
-                    {
-                        filledFields++;
-                        this.toolStripStatusLabel1.Text = "Было введено ФИО";
-
-                        MessageBox.Show("1");
-                    }
-                }
-            }
-
-            if (sender == this.numericUpDownBirthMonth || sender == this.numericUpDownBirthYear) // проверка даты рождения
-            {
-                if (this.numericUpDownBirthYear.Value != 1) 
+                Regex regex = new Regex(@"^\D+\s\D+\s\D+$"); 
+                if (regex.IsMatch(this.textBoxFIO.Text))
                 {
                     filledFields++;
-                    this.toolStripStatusLabel1.Text = "Была введена дата рождения";
-
-                    MessageBox.Show("2");
                 }
             }
 
-            if (sender == this.textBox1 || sender == this.textBox2 || sender == this.textBox3 || sender == this.textBox4 || sender == this.textBox5 || sender == this.textBox6 || sender == this.textBox7 || sender == this.textBox8 || sender == this.textBox9 || sender == this.textBox10)
-            {
-                byte filledFieldsTelephone = 0;
-
-                filledFieldsTelephone = (byte) this.groupBoxTelephone.Controls.OfType<TextBox>().Where(n => !String.IsNullOrEmpty(n.Text)).Count(); // список TextBox, строка которых не будет пуста
-                this.toolStripStatusLabel1.Text = filledFieldsTelephone != 10 ? $"Осталось цифр номера: {10 - filledFieldsTelephone} из {10}" : "Был введён номер телефона";
-
-                filledFields += filledFieldsTelephone;
-
-                //MessageBox.Show($"3: {filledFields}");
-            }
-
-            if (sender == this.buttonNext) // проверка страны
+            // ПРОВЕРКА ДАТЫ РОЖДЕНИЯ
+            if (this.numericUpDownBirthYear.Value != 1)
             {
                 filledFields++;
-                this.toolStripStatusLabel1.Text = "Была выбрана страна";
-
-                MessageBox.Show("4");
             }
 
-            if (sender == this.trackBarGender) // проверка пола
+            // ПРОВЕРКА НОМЕРА ТЕЛЕФОНА
+            if (this.groupBoxTelephone.Controls.OfType<TextBox>().Where(n => !String.IsNullOrEmpty(n.Text)).Count() == 10)
             {
-                if (this.trackBarGender.Value != 1) 
-                {
-                    filledFields++;
-                    this.toolStripStatusLabel1.Text = "Был выбран пол";
-
-                    MessageBox.Show("5");
-                }
+                filledFields++;
             }
 
-            int percentFilled = (int) (100 / 14 * filledFields);
-            this.toolStripProgressBar1.Value = percentFilled;
+            // ПРОВЕРКА СТРАНЫ
+            if (!String.IsNullOrEmpty(this.pictureBoxCountry.ImageLocation))
+            {
+                filledFields++;
+            }
 
-            //MessageBox.Show($"VALUE: {this.toolStripProgressBar1.Value}\nPERCENT: {percentFilled}\nFILLEDFILDS: {filledFields}");
+            // ПРОВЕРКА ПОЛА
+            if (this.trackBarGender.Value != 1) 
+            {
+                filledFields++;
+            }
+
+            this.toolStripProgressBar.Value = 20 * filledFields; // задание progressBar'у значения
+            this.updateStatusLabel(sender, e); // обновление строки статуса
         }
 
+        private void updateStatusLabel(object sender, EventArgs e)
+        {
+            if (sender == this.textBoxFIO)
+            {
+                this.toolStripStatusLabel.Text = $"Последним изменением был ввод ФИО: {this.textBoxFIO.Text}";
+            }
+            else if (sender == this.numericUpDownBirthDay || sender == this.numericUpDownBirthMonth || sender == this.numericUpDownBirthYear)
+            {
+                this.toolStripStatusLabel.Text = $"Последним изменением был ввод даты рождения: {this.numericUpDownBirthDay.Value}.{this.numericUpDownBirthMonth.Value}.{this.numericUpDownBirthYear.Value}";
+            }
+            else if (sender == this.textBox1 || sender == this.textBox2 || sender == this.textBox3 || sender == this.textBox4 || sender == this.textBox5 || sender == this.textBox6 || sender == this.textBox7 || sender == this.textBox8 || sender == this.textBox9 || sender == this.textBox10)
+            {
+                this.toolStripStatusLabel.Text = $"Последним изменением был ввод номера телефона: +7 ({this.textBox1.Text + this.textBox2.Text + this.textBox3.Text}) {this.textBox4.Text + this.textBox5.Text + this.textBox6.Text} {this.textBox7.Text + this.textBox8.Text}-{this.textBox9.Text + this.textBox10.Text}";
+            }
+            else if (sender == this.buttonNext || sender == this.buttonPrevious)
+            {
+                this.toolStripStatusLabel.Text = $"Последним изменением был выбор страны проживания: {Path.GetFileNameWithoutExtension(this.pictureBoxCountry.ImageLocation)}"; // TO DO
+            }
+            else if (sender == this.trackBarGender)
+            {
+                this.toolStripStatusLabel.Text = $"Последним изменением был выбор пола: {(this.trackBarGender.Value == 1 ? "мужской" : "женский")}";
+            }
+        }
 
 
         /////////////////////////////////////
         //           ПЕРВЫЙ БЛОК           //
         /////////////////////////////////////
 
-        private Random rand = new Random();
-        private string language = "RUS";
-        private bool caps = true;
-
+        // МЕТОД, ОТВЕЧАЮЩИЙ ЗА КЛИК НА ЛЮБУЮ КНОПКУ-БУКВУ
         private void button_Click(object sender, EventArgs e) // используется для всех кнопок-букв.
         {
             Button clickedButton = sender as Button; // берётся кнопка, которая вызвала метод,
             this.textBoxFIO.Text += clickedButton.Text; // с этой кнопки добаляется текст в поле с ФИО
         }
 
+        // КНОПКА ДЛЯ ПЕРЕКЛЮЧЕНИЯ РАСКЛАДКИ
         private void buttonLanguage_Click(object sender, EventArgs e)
         {
             this.buttonLanguage.Text = this.buttonLanguage.Text == "RUS" ? "ENG" : "RUS"; // меняется язык на противоположный
@@ -128,6 +134,7 @@ namespace Form3
             this.updateKeyboard();
         }
 
+        // КНОПКА "ПРОБЕЛ"
         private void buttonSpace_Click(object sender, EventArgs e)
         {
             this.textBoxFIO.Text += " "; // добавляется пробел
@@ -136,6 +143,7 @@ namespace Form3
             this.updateKeyboard();
         }
 
+        // КНОПКА ДЛЯ ОЧИСТКИ ВСЕГО ПОЛЯ ФИО
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             this.textBoxFIO.Text = string.Empty; // строка очищается
@@ -144,24 +152,25 @@ namespace Form3
             this.updateKeyboard();
         }
 
+        // КНОПКА "CAPS"
         private void buttonCaps_Click(object sender, EventArgs e)
         {
             this.caps = !this.caps; // меняется регистр на противоположный
             this.updateKeyboard();
         }
 
-
+        // ОБНОЛВЕНИЕ КНОПОК КЛАВИАТУРЫ
         private void updateKeyboard()
         {
             ushort from = 0;
             ushort to = 0;
 
-            if (this.language == "RUS") { from = 1040; to = 1072; }
-            else if (this.language == "ENG") { from = 65; to = 90; }
+            if (this.language == "RUS") { from = 1040; to = 1072; } // по ASCII большие РУС-буквы от 1040 до 1072
+            else if (this.language == "ENG") { from = 65; to = 90; } // по ASCII большие АНГ-буквы от 65 до 90
 
-            if (this.caps == false) { from += 32; to += 32; }
+            if (this.caps == false) { from += 32; to += 32; } // если добавить к коду по ASCII хоть к РУС-буквам, хоть к АНГ-буквам - они станут маленькими.
 
-            foreach (Button button in this.groupBoxFIO.Controls.OfType<Button>().Skip(4))
+            foreach (Button button in this.groupBoxFIO.Controls.OfType<Button>().Skip(4)) // берётся каждая клавиша-буква (пропускаются четыре кнопки управления) и ей рандомно задаётся буква
             {
                 button.Text = char.ConvertFromUtf32(this.rand.Next(from, to));
             }
@@ -179,6 +188,7 @@ namespace Form3
         //           ВТОРОЙ БЛОК           //
         /////////////////////////////////////
 
+        // NUMERICUPDOWN, КОТОРЫЙ ОТВЕЧАЕТ ЗА ИЗМЕНЕНИЕ МЕСЯЦА
         private void numericUpDownBirthMonth_ValueChanged(object sender, EventArgs e)
         {
             this.updateProgressBar(sender, e);
@@ -190,7 +200,7 @@ namespace Form3
             else if (this.numericUpDownBirthMonth.Value == 2) // если выбран месяц февраль, т.е. 28 или 29 дней.
             {
                 /*
-                Отсюда следует распределение високосных годов:
+                Распределение високосных годов:
                 * год, номер которого кратен 400, — високосный;
                 * остальные годы, номер которых кратен 100, — невисокосные (например, годы 1700, 1800, 1900, 2100, 2200, 2300);
                 * остальные годы, номер которых кратен 4, — високосные;
@@ -219,9 +229,10 @@ namespace Form3
             }
         }
 
-        private void numericUpDownBirthYear_ValueChanged(object sender, EventArgs e)
+        // NUMERICUPDOWN, КОТОРЫЙ ОТВЕЧАЕТ ЗА ИЗМЕНЕНИЕ ГОДА
+        private void numericUpDownBirthYear_ValueChanged(object sender, EventArgs e) 
         {
-            this.numericUpDownBirthMonth_ValueChanged(sender, e);
+            this.numericUpDownBirthMonth_ValueChanged(sender, e); // лучше бы было создать один метод, который вёл бы и на это свойство и на свойство выше
         }
 
         /////////////////////////////////////
@@ -236,27 +247,37 @@ namespace Form3
         //           ТРЕТИЙ БЛОК           //
         /////////////////////////////////////
 
-        TextBox textBox; // текущий textBox
 
+        // КНОПКА ДЛЯ ОЧИСТКИ ВСЕХ ПОЛЕЙ НОМЕРА ТЕЛЕФОНА
         private void buttonClearAllTexBox_Click(object sender, EventArgs e)
         {
             foreach (TextBox textBox in this.groupBoxTelephone.Controls.OfType<TextBox>())
             {
                 textBox.Text = null;
-                textBox.Enabled = true;
             }
         }
 
+        // КНОПКА ДЛЯ ГЕНЕРАЦИИ НОВОГО ЧИСЛА В ТЕКУЩЕМ ПОЛЕ
         private void buttonNewNum_Click(object sender, EventArgs e)
         {
-            this.textBox.Text = char.ConvertFromUtf32(rand.Next(48, 58));
+            char generatedNum;
+
+            do
+            {
+                generatedNum = (char)this.rand.Next(48, 58);
+            }
+            while (this.textBox.Text.Contains(generatedNum)); // нужно, чтобы новое сгенерированное число не было равно предыдущему в этом же textBox
+
+            this.textBox.Text = generatedNum.ToString();
         }
 
+        // КНОПКА ДЛЯ ВЫБОРА СЛЕДУЮЩЕГО "ТЕКУЩЕГО" ПОЛЯ
         private void buttonNextTextBox_Click(object sender, EventArgs e)
         {
-            this.textBox = this.groupBoxTelephone.Controls.OfType<TextBox>().Skip(rand.Next(0, 10)).First();
+            this.textBox = this.groupBoxTelephone.Controls.OfType<TextBox>().Skip(this.rand.Next(0, 10)).First();
         }
 
+        // КНОПКА ДЛЯ НАЧАЛА ВВОДА
         private void buttonStart_Click(object sender, EventArgs e)
         {
             this.buttonStart.Enabled = false;
@@ -276,54 +297,88 @@ namespace Form3
 
 
         /////////////////////////////////////
-        //           ЧЕТВЁРТЫЙ БЛОК           //
+        //           ЧЕТВЁРТЫЙ БЛОК        //
         /////////////////////////////////////
-
-        string[] location = { "D:\\IT\\Repositories WF\\WF_Philipps_homework_form_3\\Form3\\Resources\\russia.gif", "D:\\IT\\Repositories WF\\WF_Philipps_homework_form_3\\Form3\\Resources\\usa.gif" };
         
-        private void buttonNext_Click(object sender, EventArgs e)
+        DirectoryInfo directoryInfo;
+        private void nextCountry(object sender, EventArgs e)
         {
+            this.directoryInfo = new DirectoryInfo(Path.Combine(this.projectPath, "Resources", "Countries")); // тут находятся gif'ки
+
+            // this.pictureBoxCountry.ImageLocation = this.directoryInfo.GetFiles().Skip(this.rand.Next(0, 6)).First().FullName; // директория.Получение всех файлов в ней.Пропуск рандомно от 0 до 6 файлов.Взятие одного.Получение полного пути к файлу
+            // CHAT GPT порекомендовал мне разделить мою портянку выше на это:
+            FileInfo[] files = this.directoryInfo.GetFiles();
+            byte randomIndex;
+            FileInfo randomFile;
+            string newImageLocation;
+
+            do
+            {
+                randomIndex = (byte) this.rand.Next(0, files.Length);
+                randomFile = files[randomIndex];
+                newImageLocation = randomFile.FullName;
+            } 
+            while (this.pictureBoxCountry.ImageLocation == newImageLocation); // проверка, чтобы не было повторов подряд
+
+            this.pictureBoxCountry.ImageLocation = newImageLocation;
+
             this.updateProgressBar(sender, e);
-            this.pictureBoxCountry.ImageLocation = this.location[rand.Next(0, location.Length)]; // БУДЕТ ЗАБАВНО, ЕСЛИ ОНО ТУТ БУДЕТ ВСЁ РАВНО РАНДОМНО ПЕРЕКЛЮЧАТЬСЯ, ТОЛЬКО НУЖНО БОЛЬШЕ СДЕЛАТЬ СТРАН
         }
-
-        private void buttonPrevious_Click(object sender, EventArgs e) // это бы убрать, чтобы две кнопки на одну функици вели
-        {
-            this.buttonNext_Click(sender, e);
-        }
-
         /////////////////////////////////////
-        //           ЧЕТВЁРТЫЙ БЛОК           //
+        //           ЧЕТВЁРТЫЙ БЛОК        //
         /////////////////////////////////////
 
 
-        private void buttonComplete_Click(object sender, EventArgs e)
+
+
+        // КНОПКА "ГОТОВО", Т.Е. ОТПРАВИТЬ РЕЗУЛЬТАТЫ
+        byte can = 0;
+        private void buttonComplete_Click(object sender, EventArgs e) // ПРИКОЛЬНО БЫ СДЕЛАТЬ, ЧТОБЫ КНОПКА ПЕРЕМЕЩАЛАСЬ ОТ КУРСОРА В ДРУГУЮ СТОРОНУ
         {
-            MessageBox.Show("An attempt was made to join or substitute a drive for which a directory on the drive is the target of a previous substitute.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            MessageBox.Show("The operating system cannot run.\r\n\r\nERROR_ALREADY_EXISTS.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            MessageBox.Show("The global filename characters, * or ?, are entered incorrectly or too many global filename characters are specified.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            MessageBox.Show("This version of %1 is not compatible with the version of Windows you're running. Check your computer's system information and then contact the software publisher..", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            MessageBox.Show("401 (0x191)\r\n\r\nThe thread is not in background processing mode.\r\n\r\nERROR_PROCESS_MODE_ALREADY_BACKGROUND", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (this.toolStripProgressBar.Value == 100)
+            {
+                can++;
+                if (can < 13)
+                {
+                    this.buttonComplete.Location = new System.Drawing.Point(this.rand.Next(13, 390), this.rand.Next(648, 695));
+                }
+                else if (can == 13)
+                {
+                    this.buttonComplete.Location = new System.Drawing.Point(13, 650);
+                    this.buttonComplete.Size = new System.Drawing.Size(548, 60);
+                }
+                else 
+                {
+                    MessageBox.Show("An attempt was made to join or substitute a drive for which a directory on the drive is the target of a previous substitute.", "Error 129", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The operating system cannot run.\r\n\r\nERROR_ALREADY_EXISTS.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The global filename characters, * or ?, are entered incorrectly or too many global filename characters are specified.", "Error global filename", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("This version of %1 is not compatible with the version of Windows you're running. Check your computer's system information and then contact the software publisher.", "Error compatible", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("401 (0x191)\r\n\r\nThe thread is not in background processing mode.\r\n\r\nERROR_PROCESS_MODE_ALREADY_BACKGROUND", "Error (0)", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            Form form = new Form();
-            PictureBox pictureBox = new PictureBox();
-            pictureBox.Image = Image.FromFile("D:\\Downloads\\Bsodwindows10.png");
+                    Form form = new Form();
+                    PictureBox pictureBox = new PictureBox();
+                    pictureBox.Image = Image.FromFile(Path.Combine(this.projectPath, "Resources", "BSOD.png"));
 
-            pictureBox.Dock = DockStyle.Fill;
-            form.Controls.Add(pictureBox);
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.WindowState = FormWindowState.Maximized;
+                    pictureBox.Dock = DockStyle.Fill;
+                    form.Controls.Add(pictureBox);
+                    form.FormBorderStyle = FormBorderStyle.None;
+                    form.WindowState = FormWindowState.Maximized;
 
-            form.ShowDialog();
+                    form.ShowDialog();
 
-            string persInfo = $"ФИО: {this.textBoxFIO.Text}\t\t\t\n" +
-                $"Дата рождения: {this.numericUpDownBirthDay.Value}.{this.numericUpDownBirthMonth.Value}.{this.numericUpDownBirthYear.Value}\n" +
-                $"Телефон: +7 ({this.textBox1.Text + this.textBox2.Text + this.textBox3.Text}) {this.textBox4.Text + this.textBox5.Text + this.textBox6.Text} {this.textBox7.Text + this.textBox8.Text}-{this.textBox9.Text + this.textBox10.Text}\n" +
-                $"Страна: {"russia"}\n" +
-                $"Пол: {(this.trackBarGender.Value == 1 ? "мужской" : "женский")}\n";
+                    string persInfo = $"ФИО: {this.textBoxFIO.Text}\t\t\t\n" +
+                        $"Дата рождения: {this.numericUpDownBirthDay.Value}.{this.numericUpDownBirthMonth.Value}.{this.numericUpDownBirthYear.Value}\n" +
+                        $"Телефон: +7 ({this.textBox1.Text + this.textBox2.Text + this.textBox3.Text}) {this.textBox4.Text + this.textBox5.Text + this.textBox6.Text} {this.textBox7.Text + this.textBox8.Text}-{this.textBox9.Text + this.textBox10.Text}\n" +
+                        $"Страна: {Path.GetFileNameWithoutExtension(this.pictureBoxCountry.ImageLocation)}\n" +
+                        $"Пол: {(this.trackBarGender.Value == 1 ? "мужской" : "женский")}\n";
 
-            MessageBox.Show(persInfo, "Анкета ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(persInfo, "Анкета ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, заполните все поля!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
-
     }
 }

@@ -81,10 +81,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\usa.gif" />
+    <None Include="Resources\Китай.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\russia.gif" />
+    <None Include="Resources\Белоруссия.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Украина.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Польша.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Казахстан.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\США.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Россия.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\BSOD.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
